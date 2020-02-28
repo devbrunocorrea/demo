@@ -34,15 +34,15 @@ environment variables in your CI:
 
 Deployment will be done automatically by the CI.
 
-exec:
-=====
+exec/restart:
+=============
 ```
 docker-compose down
 docker-compose up -d
 docker-compose exec php bin/console doctrine:schema:drop --force
 docker-compose exec php bin/console doctrine:schema:create
 docker-compose exec php bin/console hautelook:fixtures:load -vvv
-dc exec php bin/console api:graphql:export
+docker-compose exec php bin/console api:graphql:export
 ```
 
 graphql-operations:
