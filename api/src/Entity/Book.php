@@ -15,6 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Resolver\BookResolver;
+use App\Resolver\BookCollectionResolver;
+use App\Resolver\BookMutationResolver;
 
 /**
  * A book.
@@ -23,6 +26,49 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity
  * @ApiResource(
+ *     graphql={
+ *        "retrievedQuery"={
+ *            "item_query"=BookResolver::class
+ *        },
+ *        "notRetrievedQuery"={
+ *         "item_query"=BookResolver::class,
+ *            "args"={}
+ *         },
+ *        "withDefaultArgsNotRetrievedQuery"={
+ *          "item_query"=BookResolver::class,
+ *          "read"=false
+ *        },
+ *        "withCustomArgsQuery"={
+ *           "item_query"=BookResolver::class,
+ *           "args"={
+ *              "id"={"type"="ID!"},
+ *              "log"={"type"="Boolean!", "description"="Is logging actived?"},
+ *              "logDate"={"type"="DateTime"}
+ *          }
+ *        },
+ *        "collectionQuery"={
+ *          "collection_query"=BookCollectionResolver::class
+ *          },
+ *        "create"={
+ *          "mutation"=BookMutationResolver::class,
+ *          "deserialize"=false
+ *        },
+ *        "mutation"={
+ *          "mutation"=BookMutationResolver::class,
+ *          "deserialize"=false
+ *         },
+ *        "withCustomArgsMutation"={
+ *         "mutation"=BookMutationResolver::class,
+ *          "args"={
+ *              "sendMail"={"type"="Boolean!", "description"="Send a mail?"}
+ *          }
+ *        },
+ *        "disabledStagesMutation"={
+ *          "mutation"=BookMutationResolver::class,
+ *          "deserialize"=false,
+ *          "write"=false
+ *        }
+ *     },
  *     iri="http://schema.org/Book",
  *     normalizationContext={"groups": {"book:read"}},
  *     mercure=true,

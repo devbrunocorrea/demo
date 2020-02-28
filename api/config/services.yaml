@@ -33,3 +33,37 @@ services:
     App\Handler\BookHandler:
         arguments:
             $imgflipClient: '@csa_guzzle.client.imgflip'
+
+    # Custom query resolvers
+    App\Resolver\BookCollectionResolver:
+        tags:
+            - { name: api_platform.graphql.query_resolver }
+
+    App\Resolver\BookResolver:
+        tags:
+            - { name: api_platform.graphql.query_resolver }
+
+    App\Resolver\ReviewResolver:
+        tags:
+            - { name: api_platform.graphql.query_resolver }
+
+    # Custom mutation resolvers
+    App\Resolver\BookMutationResolver:
+        tags:
+            - { name: api_platform.graphql.mutation_resolver }
+
+    App\Resolver\ReviewMutationResolver:
+        tags:
+            - { name: api_platform.graphql.mutation_resolver }
+
+    # Custom types
+    App\Type\Definition\DateTimeType:
+        tags:
+            - { name: api_platform.graphql.type }
+
+    App\Type\TypeConverter:
+        decorates: api_platform.graphql.type_converter
+
+    # Custom stages
+    App\Stage\WriteStage:
+        decorates: api_platform.graphql.resolver.stage.write

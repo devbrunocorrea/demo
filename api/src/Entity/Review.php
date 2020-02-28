@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Resolver\ReviewResolver;
+use App\Resolver\ReviewMutationResolver;
 
 /**
  * A review of an item - for example, of a restaurant, movie, or store.
@@ -18,7 +20,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @see http://schema.org/Review Documentation on Schema.org
  *
  * @ORM\Entity
- * @ApiResource(
+ * @ApiResource(graphql={
+ *      "review"={
+ *          "item_query"=ReviewResolver::class
+ *       },
+ *      "create"={
+ *          "mutation"=ReviewMutationResolver::class,
+ *          "deserialize"=false   
+ *      }
+ *     },
  *     iri="http://schema.org/Review",
  *     normalizationContext={"groups": {"review:read"}}
  * )
