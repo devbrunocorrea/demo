@@ -15,14 +15,11 @@ final class BookMutationResolver implements MutationResolverInterface
     {
         // Mutation input arguments are in $context['args']['input']
 
-        dump($context['args']['input']);
-
         // Do something with the book.
         // Or fetch the book if it has not been retrieved
 
         // The returned item will be persisted
         return $item;
     }
-
 
 }

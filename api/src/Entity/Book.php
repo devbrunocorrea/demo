@@ -50,13 +50,14 @@ use App\Resolver\BookMutationResolver;
  *          "collection_query"=BookCollectionResolver::class
  *          },
  *        "create"={
- *          "mutation"=BookMutationResolver::class,
- *          "deserialize"=false
+ *          "mutation"=BookMutationResolver::class
  *        },
- *        "mutation"={
- *          "mutation"=BookMutationResolver::class,
- *          "deserialize"=false
- *         },
+ *        "delete"={
+ *          "mutation"=BookMutationResolver::class
+ *        },
+ *        "update"={
+ *          "mutation"=BookMutationResolver::class
+ *        },
  *        "withCustomArgsMutation"={
  *         "mutation"=BookMutationResolver::class,
  *          "args"={

@@ -67,3 +67,9 @@ services:
     # Custom stages
     App\Stage\WriteStage:
         decorates: api_platform.graphql.resolver.stage.write
+
+    App\Stage\DeserializeStage:
+        decorates: api_platform.graphql.resolver.stage.deserialize
+
+    App\Stage\ReadStage:
+        decorates: api_platform.graphql.resolver.stage.read

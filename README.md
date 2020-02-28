@@ -44,3 +44,50 @@ docker-compose exec php bin/console doctrine:schema:create
 docker-compose exec php bin/console hautelook:fixtures:load -vvv
 dc exec php bin/console api:graphql:export
 ```
+
+==========================
+graphql-operations:
+```
+query LER {
+  collectionQueryBooks {
+    edges {
+      node {
+        id
+        title
+      }
+    }
+  }
+}
+
+mutation CRIAR {
+  createBook(input: {
+    title: "TITULO DO LIVRO",
+    description: "DESCRICAO DO LIVRO",
+    author:"NOME DO AUTOR",
+    publicationDate:"2020-02-28T00:00:00Z"
+  }) {
+    book {
+      id
+      title
+    }
+  }
+
+}
+
+mutation DELETAR {
+  deleteBook(input: {
+    id: "/books/011c42c5-b896-4b56-8114-32dafd716dc9"
+  }) {
+    clientMutationId
+  }
+}
+
+mutation ATUALIZAR {
+  updateBook(input: {
+    id: "/books/04238665-3244-4d4a-8bed-81229ede6a88",
+			title: "NOVO TITULO"
+  }) {
+    clientMutationId
+  }
+}
+```
