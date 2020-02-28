@@ -33,3 +33,14 @@ environment variables in your CI:
 **Important: do not check "_Display value in build log_" for security reason!**
 
 Deployment will be done automatically by the CI.
+
+=========================
+exec:
+```
+docker-compose down
+docker-compose up -d
+docker-compose exec php bin/console doctrine:schema:drop --force
+docker-compose exec php bin/console doctrine:schema:create
+docker-compose exec php bin/console hautelook:fixtures:load -vvv
+dc exec php bin/console api:graphql:export
+```
